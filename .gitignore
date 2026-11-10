@@ -1,0 +1,9 @@
+# banco de dados, anexos e dados reais ficam fora do Git
+data/*.db
+data/*.db-*
+data/anexos/
+data/backups/
+data/logs/
+data/seed.json
+.env
+node_modules/

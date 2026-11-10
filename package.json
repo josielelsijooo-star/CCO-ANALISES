@@ -1,0 +1,22 @@
+{
+  "name": "cco-mirian",
+  "version": "0.1.0",
+  "description": "Plataforma do CCO da rede Mirian: ocorrências, painel, manutenção de câmeras e relatório por posto",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env src/server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env --watch src/server.js",
+    "importar": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env scripts/importar.js",
+    "usuario": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env scripts/usuario.js",
+    "backup": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env scripts/backup.js",
+    "servico:instalar": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env scripts/servico.js instalar",
+    "servico:status": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env scripts/servico.js status",
+    "servico:parar": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env scripts/servico.js parar",
+    "servico:iniciar": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env scripts/servico.js iniciar",
+    "servico:remover": "node --disable-warning=ExperimentalWarning --env-file-if-exists=.env scripts/servico.js remover"
+  }
+}

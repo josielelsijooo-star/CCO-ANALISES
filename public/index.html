@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CCO Mirian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><b>CCO</b>Mirian</div>
+    <nav class="tabs" aria-label="Seções">
+      <a href="#painel">Painel</a>
+      <a href="#ocorrencias">Ocorrências</a>
+      <a href="#cameras">Câmeras</a>
+      <a href="#relatorio">Relatório por posto</a>
+      <a href="#cadastros">Cadastros</a>
+    </nav>
+    <div class="top-right">
+      <button class="btn pri" id="btn-new" type="button" hidden><span class="plus">+</span> Nova ocorrência</button>
+      <div class="me" id="me"></div>
+    </div>
+  </div>
+</header>
+<div id="conn" class="conn info" hidden><div class="wrap" id="conn-t"></div></div>
+
+<main class="wrap">
+  <section class="view" id="v-painel" hidden>
+    <div class="vhead"><div><h1>Painel de ocorrências</h1><p>O que as rondas ao vivo e as análises de gravação registraram na rede.</p></div></div>
+    <div class="filters" id="pf"></div>
+    <div id="p-body" class="view"></div>
+  </section>
+
+  <section class="view" id="v-ocorrencias" hidden>
+    <div class="vhead"><div><h1>Ocorrências</h1><p>Uma linha por fato. Clique numa ocorrência para ver, editar ou registrar o retorno do gerente.</p></div>
+      <button class="btn" id="btn-csv" type="button" hidden>Exportar CSV</button></div>
+    <div class="filters" id="of"></div>
+    <div id="o-body"></div>
+  </section>
+
+  <section class="view" id="v-cameras" hidden>
+    <div class="vhead"><div><h1>Manutenção de câmeras</h1><p>Uma linha por câmera com defeito, do levantamento até a execução.</p></div>
+      <button class="btn pri" id="btn-newcam" type="button" hidden><span class="plus">+</span> Registrar defeito</button></div>
+    <div class="filters" id="cf"></div>
+    <div id="c-body" class="view"></div>
+  </section>
+
+  <section class="view" id="v-relatorio" hidden>
+    <div class="vhead"><div><h1>Relatório por posto</h1><p>Resumo do mês para enviar ao gerente: totais, cada ocorrência com a descrição e as câmeras com defeito.</p></div>
+      <button class="btn" id="btn-rep" type="button" hidden>Imprimir ou salvar PDF</button></div>
+    <div class="filters" id="rf"></div>
+    <div id="r-body"></div>
+  </section>
+
+  <section class="view" id="v-cadastros" hidden>
+    <div class="vhead"><div><h1>Cadastros e parâmetros</h1><p>Listas dos menus, gerentes de cada posto, prazos por gravidade e usuários da plataforma.</p></div>
+      <div class="vhead-acoes"><span class="pend-txt" id="cad-pend" hidden>Alterações não salvas</span><button class="btn pri" id="btn-cad" type="button" hidden>Salvar cadastros</button></div></div>
+    <div id="k-body"></div>
+    <div id="u-body"></div>
+    <div id="lx-body"></div>
+  </section>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-modal="true" role="dialog" aria-labelledby="dr-title">
+  <div class="dr-h"><div><h2 id="dr-title"></h2><div class="meta" id="dr-meta"></div></div><button class="btn ghost" id="dr-x" type="button" aria-label="Fechar">✕</button></div>
+  <form class="dr-b" id="dr-form" novalidate></form>
+  <div class="dr-f" id="dr-foot"></div>
+</aside>
+<div id="tip" role="tooltip"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="/js/app.js"></script>
+</body>
+</html>

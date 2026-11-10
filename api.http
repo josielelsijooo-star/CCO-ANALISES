@@ -1,0 +1,34 @@
+### Testes rápidos da API (extensão REST Client: clique em "Send Request" acima de cada bloco)
+@base = http://localhost:3000
+
+### Entrar (o cookie de sessão fica guardado para os próximos pedidos)
+POST {{base}}/api/login
+Content-Type: application/json
+
+{ "login": "admin", "senha": "COLE-A-SENHA-AQUI" }
+
+### Quem sou eu
+GET {{base}}/api/me
+
+### Tudo: cadastros, ocorrências e câmeras
+GET {{base}}/api/estado
+
+### Registrar uma ocorrência
+POST {{base}}/api/ocorrencias
+Content-Type: application/json
+
+{
+  "data": "2026-11-10", "hIni": "10:05", "hFim": "10:40",
+  "posto": "Mirian 1 Vilhena", "tipo": "Caminhão dormiu na bomba", "gravidade": "Média",
+  "frente": "Ao vivo", "descricao": "Teste pela API", "status": "Encaminhado",
+  "dataAnalise": "2026-11-10", "horaAnalise": "10:45", "registradoPor": "Leila"
+}
+
+### Registrar o retorno de uma ocorrência (troque o id)
+PUT {{base}}/api/ocorrencias/oc-001
+Content-Type: application/json
+
+{ "status": "Resolvido", "dataSolucao": "2026-11-10", "retorno": "Gerente orientou a equipe de pista." }
+
+### Sair
+POST {{base}}/api/logout

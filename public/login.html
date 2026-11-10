@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entrar · CCO Mirian</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="/css/app.css">
+<style>
+  .login{min-height:100vh;display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px))}
+  .login form{width:min(380px,100%);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px 24px;display:flex;flex-direction:column;gap:14px}
+  .login .brand{font-size:26px;margin-bottom:2px}
+  .login p{margin:0;color:var(--ink-2)}
+  .login .inp{width:100%;height:40px}
+  .login .btn{height:42px;width:100%}
+  .login .ferr{min-height:18px}
+</style>
+</head>
+<body>
+<main class="login">
+  <form id="f" novalidate>
+    <div class="brand"><b>CCO</b>Mirian</div>
+    <p>Entre com o login que o administrador da plataforma criou para você.</p>
+    <div class="fld"><label class="lbl" for="login">Login</label><input class="inp" id="login" autocomplete="username" autocapitalize="none" required></div>
+    <div class="fld"><label class="lbl" for="senha">Senha</label><input class="inp" id="senha" type="password" autocomplete="current-password" required></div>
+    <div class="ferr" id="erro" role="alert"></div>
+    <button class="btn pri" type="submit" id="entrar">Entrar</button>
+  </form>
+</main>
+<script>
+document.getElementById('f').addEventListener('submit', async e => {
+  e.preventDefault();
+  const login = document.getElementById('login').value.trim(), senha = document.getElementById('senha').value;
+  const erro = document.getElementById('erro'), btn = document.getElementById('entrar');
+  if (!login || !senha) { erro.textContent = 'Informe login e senha.'; return; }
+  btn.disabled = true; btn.textContent = 'Entrando…'; erro.textContent = '';
+  try {
+    const r = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ login, senha }) });
+    if (r.ok) { location.href = '/'; return; }
+    const j = await r.json().catch(() => ({}));
+    erro.textContent = j.erro || 'Não foi possível entrar.';
+  } catch { erro.textContent = 'Sem conexão com o servidor do CCO.'; }
+  btn.disabled = false; btn.textContent = 'Entrar';
+});
+document.getElementById('login').focus();
+</script>
+</body>
+</html>
